@@ -5,6 +5,7 @@ angular.module('poseidon')
 	Neighborhood.show($state.params.neighborhoodId)
 	.then(function(response){
 		$scope.neighborhood = response.data;
+		$scope.houses = response.data.houses;
 		var map = Map.create('#map', $scope.neighborhood.lat, $scope.neighborhood.lng, 11);
 	});
 
@@ -16,10 +17,26 @@ angular.module('poseidon')
         house.lng = results[0].geometry.location.lng();
         Neighborhood.addHouse(house, $state.params.neighborhoodId)
 				.then(function(response){
-					console.log('hooray');
+					$scope.houses = response.data.houses;
 				})
       }
     });
   };
 
+  var markers = [];
+
+
+	function addMarkers(){
+		clearMarkers();
+		markers = $scope.houses.map(function(h){
+			return Map.addMarker(map, h.lat, h.lng, h.name, '/assets/marker.png');
+		});
+	}
+
+	function clearMarkers(){
+		markers.forEach(function(m){
+			m.setMap(null);
+		});
+		markers = [];
+	}
 });

@@ -28,15 +28,13 @@
 				th Address
 				th Price
 				th Square Ft.
-				th Bedrooms
-				th Bathrooms
 				th Edit
 				th Delete
 		tbody
-			tr
-				td a
-				td b
-				td c
+			tr(ng-repeat='house in houses')
+				td {{house}}
+				td {{house.lat}}
+				td {{house.lng}}
 				td d
 				td: button.btn.btn-xs.btn-link(ng-click='editHouse(house)') Edit
 				td: button.btn.btn-xs.btn-warning(ng-click='destroyHouse(house)') X
