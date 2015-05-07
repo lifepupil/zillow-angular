@@ -49,7 +49,7 @@ angular.module('poseidon')
 	function addMarkers(){
 		clearMarkers();
 		markers = $scope.houses.map(function(h){
-			return Map.addMarker(map, h.lat, h.lng, h.address, '/assets/greenhouse.png');
+			return Map.addMarker(map, h.lat, h.lng, h.address, '/assets/redhouse.png');
 		});
 	}
 
