@@ -1,4 +1,13 @@
-h4 YE OLDE NEIGHBORHOODS
+h4 NEIGHBORHOODS
+
+.row
+	.col-xs-4.col-xs-offset-4
+		form(name='neighborhoodForm', novalidate)
+			.form-group
+				label(for='name') Name / Zip Code
+				input.form-control#name(type='text', name='name', ng-model='neighborhood.name')
+				button.btn.btn-default(type='submit', ng-click='createNeighborhood(neighborhood)') Add Neighborhood
+	
 
 .row
 	.col-xs-8.col-xs-offset-2

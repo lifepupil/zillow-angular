@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('poseidon')
-.controller('ListNeighborhoodCtrl', function($scope, $state, Neighborhood, $window){
+.controller('ListNeighborhoodCtrl', function($scope, $state, Neighborhood, $window, Map){
 
 	Neighborhood.find()
 	.then(function(response){
@@ -11,8 +11,28 @@ angular.module('poseidon')
 			$scope.isEdit = true;
 			$scope.isDelete = true;
 		}
-
 	});
+
+
+  $scope.createNeighborhood = function(neighborhood) {
+    Map.geocode(neighborhood.name, function(results) {
+      if(results && results.length) {
+        var neighborhood = {};
+        neighborhood.name = results[0].formatted_address;
+        neighborhood.lat = results[0].geometry.location.lat();
+        neighborhood.lng = results[0].geometry.location.lng();
+        neighborhood.uid = $scope.activeUser.uid;
+        // console.log(neighborhood);
+
+        Neighborhood.create(neighborhood)
+        .then(function(response){
+					console.log('INSIDE createNeighborhood response', response, 'response.data', response.data);
+          // $state.go('neighborhoods.list');
+					$scope.neighborhoods.push(response.data);
+        });
+      }
+    });
+  };
 
 	$scope.deleteNeighborhood = function(neighborhood) {
 		console.log('in deleteNeighborhood', neighborhood)
@@ -26,6 +46,6 @@ angular.module('poseidon')
 	$scope.editNeighborhood = function(neighborhood){
 		debugger;
 		console.log($state.params);
-	}
+	};
 
 });

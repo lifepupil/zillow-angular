@@ -19,12 +19,6 @@ angular.module('poseidon')
         .then(function(){
           $state.go('neighborhoods.list');
         });
-
-        // neighborhood.addStop(neighborhood)
-        // .then(function(response) {
-        //   $scope.neighborhood = response.data;
-          // addMarkers()
-      // });
       }
 
     });
