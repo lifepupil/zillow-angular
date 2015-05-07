@@ -16,5 +16,5 @@ h4 YE OLDE NEIGHBORHOODS
 					td: button.btn.btn-xs.btn-info(ui-sref='neighborhoods.show({neighborhoodId: neighborhood._id})') Show
 					td {{neighborhood.name}}
 					td {{neighborhood.houses.length}}
-					td: button.btn.btn-xs.btn-link(ui-sref='#') Edit
-					td: button.btn.btn-xs.btn-danger(ui-sref='#') X
+					td: button.btn.btn-xs.btn-link(ng-click='editNeighborhood(neighborhood)') Edit
+					td: button.btn.btn-xs.btn-danger(ng-click='deleteNeighborhood(neighborhood)') X

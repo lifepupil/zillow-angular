@@ -8,6 +8,11 @@ angular.module('poseidon')
     // this.name = obj.name;
   }
 
+
+  Neighborhood.destroy = function(neighborhoodId){
+    return $http.delete(nodeUrl + '/neighborhoods/' + neighborhoodId);
+  }
+
   Neighborhood.find = function(){
     return $http.get(nodeUrl + '/neighborhoods')
   }
