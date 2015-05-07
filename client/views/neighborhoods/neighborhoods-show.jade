@@ -1,10 +1,42 @@
 .row
-	.col-xs-4.col-xs-offset-2
-
+	.col-xs-5
 		h2 {{neighborhood.name}}
-		h3 {{neighborhood.lat}}
-		h3 {{neighborhood.lng}}
-		
 		#map
-			
-		
+	.col-xs-3.col-xs-offset-2
+		form(name='tripForm', novalidate)
+			h3 Add a House
+			.form-group
+				label(for='address') Address
+				input.form-control(type='text', name='name', ng-model='house.address')
+				label(for='price') Price
+				input.form-control(type='number', name='name', ng-model='house.price')
+				label(for='bedrooms') Square Ft.
+				input.form-control(type='number', name='name', ng-model='house.sqft')
+				label(for='bedrooms') Bedrooms
+				input.form-control(type='number', name='name', ng-model='house.bedrooms')
+				label(for='bathrooms') Bathrooms
+				input.form-control(type='number', name='name', ng-model='house.bathrooms')
+			.form-group
+				h1 PICTURE SHIT GOES HERE
+			.form-group
+				button.btn.btn-default(type='submit', ng-click='create(house)') Add House
+.row
+	.col-xs-6.col-xs-offset-3
+	table.table.table-striped
+		thead
+			tr
+				th Address
+				th Price
+				th Square Ft.
+				th Bedrooms
+				th Bathrooms
+				th Edit
+				th Delete
+		tbody
+			tr
+				td a
+				td b
+				td c
+				td d
+				td: button.btn.btn-xs.btn-link(ng-click='editHouse(house)') Edit
+				td: button.btn.btn-xs.btn-warning(ng-click='destroyHouse(house)') X

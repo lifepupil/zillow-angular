@@ -16,6 +16,10 @@ angular.module('poseidon')
     return $http.get(nodeUrl + '/neighborhoods/' + neighborhoodId);
   }
 
+  Neighborhood.addHouse = function(house, neighborhoodId){
+    return $http.post(nodeUrl + '/neighborhoods/' + neighborhoodId + '/houses', house)
+  }
+
   // Neighborhood.prototype.save = function(){
   //   return $http.post(nodeUrl + '/neighborhoods', this);
   // };
