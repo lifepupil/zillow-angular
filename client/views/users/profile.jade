@@ -1,0 +1,11 @@
+h3 Profile
+
+
+.row
+	.col-xs-4.col-xs-offset-4
+		.form-group
+			label Name
+			input.form-control(type='string', ng-model='user.name')
+			label Email
+			input.form-control(type='string', ng-model='user.email')
+			button.btn.btn-xs.btn-success(ng-click='update(user)') Update

@@ -1,0 +1,23 @@
+.row
+	.col-xs-7
+		#map
+	.col-xs-5
+		form(name='neighborhoodForm', novalidate)
+			.form-group
+				label(for='name') Name
+				input.form-control#name(type='text', name='name', ng-model='neighborhood.name')
+				button.btn.btn-default(type='submit', ng-click='create(neighborhood)') Add Neighborhood
+			//- table.table.table-striped
+			//- 	thead
+			//- 		tr
+			//- 			th Location
+			//- 			th Latitude
+			//- 			th Longitude
+			//- 			th Remove Stop
+			//- 	tbody
+			//- 		tr(ng-repeat='stop in trip.stops')
+			//- 			td {{stop.name}}
+			//- 			td {{stop.lat}}
+			//- 			td {{stop.lng}}
+			//- 			td: button.btn.btn-danger(ng-click='removeStop(stop)') x
+					
