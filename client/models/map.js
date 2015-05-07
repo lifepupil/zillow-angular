@@ -12,13 +12,13 @@ angular.module('poseidon')
 	};
 
 	Map.create = function(selector, lat, lng, zoom) {
+		selector = angular.element(selector).get(0);
 		var options = {
 			center: new $window.google.maps.LatLng(lat, lng),
 			zoom: zoom,
 			mapTypeId: $window.google.maps.MapTypeId.ROADMAP,
 			styles: []
 		};
-		selector = angular.element(selector).get(0);
 		var map = new $window.google.maps.Map(selector, options);
 		return map;
 	};

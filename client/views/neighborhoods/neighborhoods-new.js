@@ -1,24 +1,27 @@
+/* camelcase:false */
+
 'use strict';
 
 angular.module('poseidon')
 .controller('NewNeighborhoodCtrl', function($scope, Map, Neighborhood){
 
 
-  $scope.create = function(neighborhood) {
+  $scope.createNeighborhood = function(neighborhood) {
+
     Map.geocode(neighborhood.name, function(results) {
 
+      console.log('results', results);
       if(results && results.length) {
-        var newNeighborhood = {};
-        newNeighborhood.name = results[0].formatted_address;
-        newNeighborhood.lat = results[0].geometry.location.lat();
-        newNeighborhood.lng = results[0].geometry.location.lng();
+        neighborhood.name = results[0].formatted_address;
+        neighborhood.lat = results[0].geometry.location.lat();
+        neighborhood.lng = results[0].geometry.location.lng();
 
-        Neighborhood.create(newNeighborhood);
-
-        // .then(function(response) {
-        //   $scope.trip = response.data;
-        //   // addMarkers();
-        // });
+        var neighborhood = new Neighborhood($scope.neighborhood);
+        neighborhood.addStop(neighborhood)
+        .then(function(response) {
+          $scope.neighborhood = response.data;
+          // addMarkers();
+        });
       }
 
     });
