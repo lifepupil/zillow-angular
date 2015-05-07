@@ -2,6 +2,8 @@
 
 angular.module('poseidon')
 .controller('ListNeighborhoodCtrl', function($scope, $state, Neighborhood, $window, Map){
+	$scope.editing = false;
+
 
 	Neighborhood.find()
 	.then(function(response){
@@ -27,7 +29,6 @@ angular.module('poseidon')
         Neighborhood.create(neighborhood)
         .then(function(response){
 					console.log('INSIDE createNeighborhood response', response, 'response.data', response.data);
-          // $state.go('neighborhoods.list');
 					$scope.neighborhoods.push(response.data);
         });
       }
@@ -35,7 +36,6 @@ angular.module('poseidon')
   };
 
 	$scope.deleteNeighborhood = function(neighborhood) {
-		console.log('in deleteNeighborhood', neighborhood)
 		Neighborhood.destroy(neighborhood._id)
 		.then(function(response) {
 			// console.log('deleteNeighborhood', response.data);
@@ -44,8 +44,37 @@ angular.module('poseidon')
 	};
 
 	$scope.editNeighborhood = function(neighborhood){
-		debugger;
-		console.log($state.params);
+		$scope.editing = true;
+		$scope.neighborhood = neighborhood;
+	};
+
+	$scope.updateNeighborhood = function(n){
+
+		var neighborhood = angular.copy(n);
+
+		Map.geocode(neighborhood.name, function(results) {
+      if(results && results.length) {
+        neighborhood.name = results[0].formatted_address;
+        neighborhood.lat = results[0].geometry.location.lat();
+        neighborhood.lng = results[0].geometry.location.lng();
+        neighborhood.uid = $scope.activeUser.uid;
+				delete neighborhood._id;
+				delete neighborhood.__v;
+
+				$scope.neighborhood = neighborhood;
+        Neighborhood.update(neighborhood, n._id)
+        .then(function(response){
+					Neighborhood.find()
+					.then(function(response){
+						$scope.neighborhoods = response.data.neighborhoods;
+					});
+        });
+      }
+    });
+
+		$scope.editing = false;
+		$scope.neighborhood = {};
+
 	};
 
 });

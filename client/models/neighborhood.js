@@ -33,5 +33,10 @@ angular.module('poseidon')
 		return $http.post(nodeUrl + '/neighborhoods', neighborhood);
 	};
 
+  Neighborhood.update = function(neighborhood, id){
+    // console.log(id);
+    return $http.put(nodeUrl + '/neighborhoods/' + id, neighborhood);
+  }
+
   return Neighborhood;
 });
