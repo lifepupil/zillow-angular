@@ -1,5 +1,20 @@
 'use strict';
 
+/*****
+
+TO-DO
+
+1. Update payload to have price, bedrooms, etc.
+2. Add webcam photo upload thing.
+3. Add markers to houses. (BONUS: when clicked, information is displayed)
+4. Add edit and delete.
+5. Toggle show for edit/delete based on user login.
+6. Home page migration to show map shit
+6. Deploy to AWS/Heroku
+
+
+*****/
+
 angular.module('poseidon')
 .controller('ShowNeighborhoodCtrl', function($scope, $state, Neighborhood, Map, $window){
 	Neighborhood.show($state.params.neighborhoodId)

@@ -1,8 +1,8 @@
 .row
-	.col-xs-5
+	.col-xs-6
 		h2 {{neighborhood.name}}
 		#map
-	.col-xs-3.col-xs-offset-2
+	.col-xs-2.col-xs-offset-2
 		form(name='tripForm', novalidate)
 			h3 Add a House
 			.form-group
@@ -28,13 +28,16 @@
 				th Address
 				th Price
 				th Square Ft.
+				th Bedrooms
+				th Bathrooms
 				th Edit
 				th Delete
 		tbody
 			tr(ng-repeat='house in houses')
-				td {{house}}
-				td {{house.lat}}
-				td {{house.lng}}
-				td d
+				td {{house.address | uppercase}}
+				td {{house.price | currency}}
+				td {{house.sqft}}
+				td {{house.bedrooms}}
+				td {{house.bathrooms}}
 				td: button.btn.btn-xs.btn-link(ng-click='editHouse(house)') Edit
 				td: button.btn.btn-xs.btn-warning(ng-click='destroyHouse(house)') X

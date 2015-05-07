@@ -3,7 +3,7 @@
 'use strict';
 
 angular.module('poseidon')
-.controller('NewNeighborhoodCtrl', function($scope, Map, Neighborhood){
+.controller('NewNeighborhoodCtrl', function($scope, Map, Neighborhood, $state){
 
   $scope.createNeighborhood = function(neighborhood) {
     Map.geocode(neighborhood.name, function(results) {
@@ -14,7 +14,10 @@ angular.module('poseidon')
         neighborhood.lng = results[0].geometry.location.lng();
         console.log(neighborhood);
 
-        Neighborhood.create(neighborhood);
+        Neighborhood.create(neighborhood)
+        .then(function(){
+          $state.go('neighborhoods.list');
+        });
 
         // neighborhood.addStop(neighborhood)
         // .then(function(response) {
