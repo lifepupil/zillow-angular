@@ -1,1 +1,20 @@
 h1 neighborhoods list
+
+.row
+	.col-xs-8.col-xs-offset-2
+		table.table.table-sneighborhooded
+			thead
+				tr
+					th Show
+					th City
+					th Houses
+					th 
+					th Delete
+					
+			tbody
+				tr(ng-repeat='neighborhood in neighborhoods')
+					td: button.btn.btn-xs.btn-info(ui-sref='neighborhoods.show({neighborhoodId: neighborhood._id})') Show
+					td {{neighborhood.name}}
+					td {{neighborhood.houses.length}}
+					td: button.btn.btn-xs.btn-link(ui-sref='#') Edit
+					td: button.btn.btn-xs.btn-danger(ui-sref='#') X

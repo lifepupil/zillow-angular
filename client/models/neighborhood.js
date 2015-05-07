@@ -8,9 +8,17 @@ angular.module('poseidon')
     // this.name = obj.name;
   }
 
-  Neighborhood.prototype.save = function(){
-    return $http.post(nodeUrl + '/neighborhoods', this);
-  };
+  Neighborhood.find = function(){
+    return $http.get(nodeUrl + '/neighborhoods')
+  }
+
+  Neighborhood.show = function(neighborhoodId){
+    return $http.get(nodeUrl + '/neighborhoods/' + neighborhoodId);
+  }
+
+  // Neighborhood.prototype.save = function(){
+  //   return $http.post(nodeUrl + '/neighborhoods', this);
+  // };
 
 	Neighborhood.create = function(neighborhood){
 		return $http.post(nodeUrl + '/neighborhoods', neighborhood);
