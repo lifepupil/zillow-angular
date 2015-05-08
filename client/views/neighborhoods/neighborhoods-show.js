@@ -17,7 +17,7 @@ TO-DO
 *****/
 
 angular.module('poseidon')
-.controller('ShowNeighborhoodCtrl', function($scope, $state, Neighborhood, Map, $window){
+.controller('ShowNeighborhoodCtrl', function($scope, $state, Neighborhood, Map){
 
 	var map;
 
@@ -25,7 +25,7 @@ angular.module('poseidon')
 	.then(function(response){
 		$scope.neighborhood = response.data;
 		$scope.houses = response.data.houses;
-		map = Map.create('#map', $scope.neighborhood.lat, $scope.neighborhood.lng, 11);
+		map = Map.create('#map', $scope.neighborhood.lat, $scope.neighborhood.lng, 13);
 		addMarkers();
 	});
 
@@ -35,10 +35,16 @@ angular.module('poseidon')
       if(results && results.length){
         house.lat = results[0].geometry.location.lat();
         house.lng = results[0].geometry.location.lng();
+
+				console.log('house inside create', house)
+
         Neighborhood.addHouse(house, $state.params.neighborhoodId)
 				.then(function(response){
 					$scope.houses = response.data.houses;
-				})
+					console.log('response', response);
+					console.log('inside addHouse then in show js',house.photo);
+					addMarkers();
+				});
       }
     });
   };

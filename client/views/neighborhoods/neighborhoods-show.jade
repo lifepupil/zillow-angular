@@ -7,17 +7,19 @@
 			h3 Add a House
 			.form-group
 				label(for='address') Address
-				input.form-control(type='text', name='name', ng-model='house.address')
+				input.form-control(type='text', name='address', ng-model='house.address')
 				label(for='price') Price
-				input.form-control(type='number', name='name', ng-model='house.price')
+				input.form-control(type='number', name='price', ng-model='house.price')
 				label(for='bedrooms') Square Ft.
-				input.form-control(type='number', name='name', ng-model='house.sqft')
+				input.form-control(type='number', name='bedrooms', ng-model='house.sqft')
 				label(for='bedrooms') Bedrooms
-				input.form-control(type='number', name='name', ng-model='house.bedrooms')
+				input.form-control(type='number', name='bedrooms', ng-model='house.bedrooms')
 				label(for='bathrooms') Bathrooms
-				input.form-control(type='number', name='name', ng-model='house.bathrooms')
+				input.form-control(type='number', name='bathrooms', ng-model='house.bathrooms')
+				label(for='photo') House Photo
+				input.form-control(type='url', name='photo', ng-model='house.photo')
 			.form-group
-				h1 PICTURE SHIT GOES HERE
+				img#house-photo(ng-src='{{house.photo}}')
 			.form-group
 				button.btn.btn-default(type='submit', ng-click='create(house)') Add House
 .row
@@ -25,6 +27,7 @@
 	table.table.table-striped
 		thead
 			tr
+				th Photo
 				th Address
 				th Price
 				th Square Ft.
@@ -34,6 +37,7 @@
 				th Delete
 		tbody
 			tr(ng-repeat='house in houses')
+				td: img#house-photo(ng-src='{{house.photo}}')
 				td {{house.address | uppercase}}
 				td {{house.price | currency}}
 				td {{house.sqft}}

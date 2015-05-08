@@ -22,6 +22,7 @@ angular.module('poseidon')
   }
 
   Neighborhood.addHouse = function(house, neighborhoodId){
+    console.log('house in neighborhood model addHouse', house);
     return $http.post(nodeUrl + '/neighborhoods/' + neighborhoodId + '/houses', house)
   }
 
