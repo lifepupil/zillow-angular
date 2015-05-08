@@ -16,12 +16,14 @@
 				input.form-control(type='number', name='bedrooms', ng-model='house.bedrooms')
 				label(for='bathrooms') Bathrooms
 				input.form-control(type='number', name='bathrooms', ng-model='house.bathrooms')
-				label(for='photo') House Photo
-				input.form-control(type='url', name='photo', ng-model='house.photo')
+				label Photo
+				input.form-control(type='file', ng-model='house.photo')
+				button.btn.btn-success.center-block(ng-click='convertPhoto()') Add Photo
+				img.center-block#house-photo(ng-src='{{house.photo}}')
+					
 			.form-group
-				img#house-photo(ng-src='{{house.photo}}')
-			.form-group
-				button.btn.btn-default(type='submit', ng-click='createHouse(house)') Add House
+				button.btn.btn-default(ng-show='!isEdit', type='submit', ng-click='createHouse(house)') Add House
+				button.btn.btn-default(ng-show='isEdit', type='submit', ng-click='updateHouse(house)') Update House
 .row
 	.col-xs-6.col-xs-offset-3
 	table.table.table-striped

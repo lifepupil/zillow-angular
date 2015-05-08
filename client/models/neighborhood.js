@@ -22,25 +22,24 @@ angular.module('poseidon')
   };
 
   Neighborhood.deleteHouse = function(houseId, neighborhoodId){
-    // console.log('house in neighborhood model addHouse', houseId);
     return $http.delete(nodeUrl + '/neighborhoods/' + neighborhoodId + '/houses/' + houseId);
   };
 
   Neighborhood.addHouse = function(house, neighborhoodId){
-    // console.log('house in neighborhood model addHouse', house);
     return $http.post(nodeUrl + '/neighborhoods/' + neighborhoodId + '/houses', house);
   };
 
-  // Neighborhood.prototype.save = function(){
-  //   return $http.post(nodeUrl + '/neighborhoods', this);
-  // };
+  Neighborhood.updateHouse = function(house, neighborhoodId){
+    console.log('house in neighborhood model updateHouse', house);
+    return $http.put(nodeUrl + '/neighborhoods/' + neighborhoodId + '/houses/' + house._id, house);
+  };
+
 
 	Neighborhood.create = function(neighborhood){
 		return $http.post(nodeUrl + '/neighborhoods', neighborhood);
 	};
 
   Neighborhood.update = function(neighborhood, id){
-    // console.log(id);
     return $http.put(nodeUrl + '/neighborhoods/' + id, neighborhood);
   };
 
