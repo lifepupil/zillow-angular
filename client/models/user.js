@@ -9,7 +9,7 @@ angular.module('poseidon')
 
   User.save = function(user){
     return $http.put(nodeUrl + '/users', user);
-  }
+  };
 
   User.oauth = function(provider) {
     return $rootScope.afAuth.$authWithOAuthPopup(provider);

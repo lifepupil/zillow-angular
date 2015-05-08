@@ -17,7 +17,7 @@ TO-DO
 *****/
 
 angular.module('poseidon')
-.controller('ShowNeighborhoodCtrl', function($scope, $state, Neighborhood, Map){
+.controller('ShowNeighborhoodCtrl', function($scope, $state, Neighborhood, Map, $window){
 
 	var map;
 
@@ -29,20 +29,33 @@ angular.module('poseidon')
 		addMarkers();
 	});
 
-	$scope.create = function(house){
-		console.log($state.params);
+
+	$scope.destroyHouse = function(house) {
+    Neighborhood.deleteHouse(house._id, $state.params.neighborhoodId)
+		.then(function(reply){
+
+			console.log('inside show js destroyHouse, reply.data',reply.data);
+			console.log('$scope.houses', $scope.houses);
+
+			$window._.remove($scope.houses, {_id: reply.data});
+      addMarkers();
+		});
+	};
+
+	$scope.createHouse = function(house){
+		// console.log($state.params);
     Map.geocode(house.address + $scope.neighborhood.name, function(results){
       if(results && results.length){
         house.lat = results[0].geometry.location.lat();
         house.lng = results[0].geometry.location.lng();
 
-				console.log('house inside create', house)
+				// console.log('house inside create', house)
 
         Neighborhood.addHouse(house, $state.params.neighborhoodId)
 				.then(function(response){
 					$scope.houses = response.data.houses;
-					console.log('response', response);
-					console.log('inside addHouse then in show js',house.photo);
+					// console.log('response', response);
+					// console.log('inside addHouse then in show js',house.photo);
 					addMarkers();
 				});
       }

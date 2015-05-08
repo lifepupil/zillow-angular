@@ -9,6 +9,6 @@ angular.module('poseidon')
 		})
 		.catch(function(){
 			alert('Janky alert error!');
-		})
-	}
+		});
+	};
 });

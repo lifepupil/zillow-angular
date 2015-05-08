@@ -9,7 +9,7 @@ angular.module('poseidon')
 	.then(function(response){
 		$scope.neighborhoods = response.data.neighborhoods;
 		// busted condition
-		if($scope.activeUser && response.data.neighborhoods[0].uid == $scope.activeUser.uid){
+		if($scope.activeUser && response.data.neighborhoods[0].uid === $scope.activeUser.uid){
 			$scope.isEdit = true;
 			$scope.isDelete = true;
 		}
