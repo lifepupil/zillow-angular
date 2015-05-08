@@ -2,4 +2,4 @@
 
 angular.module('poseidon')
 .constant('firebaseUrl', 'https://facebook-cdr.firebaseio.com/')
-.constant('nodeUrl', 'http://localhost:8000');
+.constant('nodeUrl', 'https://lit-meadow-3808.herokuapp.com');
